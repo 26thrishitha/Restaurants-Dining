@@ -90,7 +90,8 @@
 // src/pages/RegisterPage.jsx
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import axios from 'axios'; // Make sure axios is imported
+// import axios from 'axios'; // Make sure axios is imported
+import api from '../api/axios';
 import './AuthPages.css';
 
 const RegisterPage = () => {
@@ -110,8 +111,10 @@ const RegisterPage = () => {
     e.preventDefault();
     try {
       // --- REPLACE MOCK LOGIC WITH REAL API CALL ---
-      const apiUrl = 'http://localhost:4000/api/auth/register';
-      await axios.post(apiUrl, formData);
+      // const apiUrl = 'http://localhost:4000/api/auth/register';
+      // await axios.post(apiUrl, formData);
+
+      await api.post('/api/auth/register', formData);
       
       alert('Registration successful! Please log in to continue.');
       navigate('/login');

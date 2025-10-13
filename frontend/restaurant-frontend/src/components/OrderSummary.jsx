@@ -1,22 +1,17 @@
 // src/components/OrderSummary.jsx
 import React from 'react';
-import { useStripe } from '@stripe/react-stripe-js'; // <-- Import the hook
-import axios from 'axios'; // Make sure axios is installed
+import { useStripe } from '@stripe/react-stripe-js';
+import api from '../api/axios'; // Use the central api instance
 import './OrderSummary.css';
 
-const OrderSummary = ({ orderItems, bookingId }) => { // <-- Pass bookingId as a prop
-  const stripe = useStripe(); // <-- Get the Stripe instance
+const OrderSummary = ({ orderItems, bookingId }) => {
+  const stripe = useStripe();
 
   const calculateTotal = () => {
     return orderItems.reduce((total, item) => total + item.price * item.quantity, 0).toFixed(2);
   };
 
-
-
-
-
-
-const handleConfirmPreOrder = async () => {
+  const handleConfirmPreOrder = async () => {
     // 1. Guard against Stripe not being loaded
     if (!stripe) {
       console.error("Stripe.js has not yet loaded.");
@@ -26,14 +21,16 @@ const handleConfirmPreOrder = async () => {
 
     try {
       // 2. Call your backend to create the session
-      const response = await axios.post('http://localhost:4000/api/payments/create-checkout-session', {
+      // --- THIS IS THE CORRECTED LINE ---
+      const response = await api.post('/api/payments/create-checkout-session', {
         items: orderItems,
         bookingId: bookingId
       });
+      // ---------------------------------
 
       const { id: sessionId } = response.data;
 
-      // 3. This is the standard, correct way to redirect to Stripe Checkout
+      // 3. Redirect to Stripe Checkout
       const { error } = await stripe.redirectToCheckout({
         sessionId,
       });
@@ -48,67 +45,6 @@ const handleConfirmPreOrder = async () => {
       alert('Could not initiate payment. Please check the console and contact support.');
     }
   };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  // const handleConfirmPreOrder = async () => {
-  //   if (!stripe) {
-  //     console.error("Stripe.js has not yet loaded.");
-  //     return;
-  //   }
-
-  //   try {
-  //     // 1. Send the order details to YOUR backend to create a checkout session
-  //     const response = await axios.post('http://localhost:4000/api/payments/create-checkout-session', {
-  //       items: orderItems,
-  //       bookingId: bookingId
-  //     });
-
-  //     const { id: sessionId } = response.data;
-
-  //     // 2. Redirect the user to Stripe Checkout using the session ID
-  //     const { error } = await stripe.redirectToCheckout({
-  //       sessionId,
-  //     });
-
-  //     if (error) {
-  //       console.error('Error redirecting to Stripe Checkout:', error);
-  //       alert('Payment failed. Please try again.');
-  //     }
-  //   } catch (error) {
-  //     console.error('Error creating checkout session:', error);
-  //     alert('Could not initiate payment. Please try again later.');
-  //   }
-  // };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   if (orderItems.length === 0) {
     return null;

@@ -1,10 +1,11 @@
 // src/components/TableLayout.jsx
 import React, { useState, useEffect } from 'react'; // Import useEffect
 import { useNavigate, useLocation } from 'react-router-dom';
-import axios from 'axios'; // Import axios
+// import axios from 'axios'; // Import axios
 import { useAuth } from '../context/AuthContext';
 import Table from './Table';
 import './TableLayout.css';
+import api from '../api/axios';
 
 const TableLayout = ({ bookingDetails }) => {
   // State for tables, loading, and errors
@@ -31,8 +32,10 @@ const TableLayout = ({ bookingDetails }) => {
         const { date, time, partySize } = bookingDetails;
         
         // Call the backend API to get available tables
-        const apiUrl = `http://localhost:4000/api/bookings/availability?date=${date}&time=${time}&partySize=${partySize}`;
-        const response = await axios.get(apiUrl);
+        // const apiUrl = `http://localhost:4000/api/bookings/availability?date=${date}&time=${time}&partySize=${partySize}`;
+        // const response = await axios.get(apiUrl);
+
+        const response = await api.get(`/api/bookings/availability?date=${date}...`);
 
         // We need to add a 'status' to the tables returned from the API
         const availableTables = response.data.map(table => ({ ...table, status: 'available' }));
@@ -78,8 +81,10 @@ const handleConfirmBooking = async () => {
       };
 
       // The JWT token is automatically added to the header by our axios setup in AuthContext
-      const apiUrl = 'http://localhost:4000/api/bookings';
-      const response = await axios.post(apiUrl, bookingData);
+      // const apiUrl = 'http://localhost:4000/api/bookings';
+      // const response = await axios.post(apiUrl, bookingData);
+
+      const response = await api.post('/api/bookings', bookingData);
       
       const { _id: bookingId } = response.data; // Get the new booking ID
 
