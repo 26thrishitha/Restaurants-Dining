@@ -1,0 +1,51 @@
+.menu-item-card {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+}
+
+.menu-item-image {
+  width: 120px;
+  height: 120px;
+  border-radius: 8px;
+  object-fit: cover;
+  margin-right: 1.5rem;
+}
+
+.menu-item-details {
+  flex-grow: 1;
+}
+
+.menu-item-details h3 {
+  margin: 0 0 0.5rem 0;
+}
+
+.menu-item-details p {
+  margin: 0;
+  color: #555;
+}
+
+.menu-item-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.menu-item-price {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.menu-item-actions button {
+  background-color: #27ae60;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+}

@@ -1,0 +1,33 @@
+
+.hero-section {
+  text-align: center;
+  padding: 60px 20px;
+  background: url('https://via.placeholder.com/1200x400') no-repeat center center/cover; 
+  color: black;
+}
+
+.booking-widget {
+  margin-top: 30px;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: inline-block;
+  border-radius: 8px;
+}
+
+.booking-widget form {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.booking-widget input, .booking-widget select, .booking-widget button {
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+}
+
+.booking-widget button {
+  background-color: #e67e22;
+  color: white;
+  cursor: pointer;
+}

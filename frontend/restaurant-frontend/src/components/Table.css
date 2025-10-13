@@ -1,0 +1,48 @@
+/* src/components/Table.css */
+.table {
+  width: 100px;
+  height: 100px;
+  border: 2px solid #555;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  transition: all 0.2s ease-in-out;
+}
+
+.table.available {
+  background-color: #2ecc71; /* Green */
+  color: white;
+  cursor: pointer;
+}
+
+.table.available:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.table.booked {
+  background-color: #e74c3c; /* Red */
+  color: #fff;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.table.selected {
+  background-color: #3498db; /* Blue */
+  color: white;
+  border-color: #f1c40f;
+  transform: scale(1.1);
+  box-shadow: 0 4px 20px rgba(52, 152, 219, 0.5);
+}
+
+.table-number {
+  font-size: 1.8rem;
+}
+
+.table-capacity {
+  font-size: 0.8rem;
+  margin-top: 5px;
+}

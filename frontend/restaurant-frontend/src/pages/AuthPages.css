@@ -1,0 +1,53 @@
+/* src/pages/AuthPages.css */
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem 0;
+}
+
+.auth-form {
+  padding: 2rem;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+.auth-form h2 {
+  margin-bottom: 1.5rem;
+}
+
+.auth-form input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box; /* Important for padding */
+}
+
+.auth-form button {
+  width: 100%;
+  padding: 12px;
+  background-color: #e67e22;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+/* Add this to src/pages/AuthPages.css */
+.auth-switch-link {
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+}
+
+.auth-switch-link a {
+  color: #e67e22;
+  text-decoration: none;
+  font-weight: bold;
+}
