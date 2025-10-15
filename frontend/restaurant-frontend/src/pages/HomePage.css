@@ -1,120 +1,120 @@
-/* ====== GLOBAL STYLES ====== */
-body {
-  margin: 0;
-  font-family: 'Poppins', sans-serif;
-  background-color: #111;
-  color: #fff;
+/* --- homepage.css --- */
+
+/* Enhanced styles for a more modern, responsive, and user-friendly hero section.
+  Using CSS variables for easy theme changes.
+*/
+
+:root {
+  --primary-color: #e67e22; /* A vibrant orange for calls-to-action */
+  --primary-hover-color: #d35400; /* A darker shade for hover effects */
+  --light-text-color: #ffffff;
+  --widget-bg-color: rgba(15, 15, 15, 0.65); /* Darker, semi-transparent background */
+  --border-radius-main: 10px; /* Consistent rounded corners */
 }
 
-/* ====== CONTAINER ====== */
-.homepage-container {
+/*
+## Hero Section Enhancements
+- A dark overlay is added using a pseudo-element (`::before`) to ensure the white text is always readable, regardless of the background image.
+- Uses flexbox for perfect vertical and horizontal centering of its content.
+- `position: relative` is crucial for the overlay to work correctly.
+*/
+.hero-section {
+  position: relative; /* Required for the overlay */
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  min-height: 100vh;
-  background: 
-    linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-    url('https://images.unsplash.com/photo-1600891963935-c9e93d1d7d1d?auto=format&fit=crop&w=1470&q=80')
-    center/cover no-repeat;
+  align-items: center;
+  padding: 80px 20px;
+  min-height: 50vh; /* Ensures the section has a good height */
+  background: url('https://via.placeholder.com/1200x400') no-repeat center center/cover;
+  color: var(--light-text-color);
   text-align: center;
-  padding: 2rem;
+  overflow: hidden; /* Prevents overlay from spilling out */
 }
 
-/* ====== HERO SECTION ====== */
-.hero-section {
-  max-width: 600px;
-  padding: 3rem 2rem;
-  border-radius: 20px;
-  background: rgba(255, 255, 255, 0.08);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(10px);
-  animation: fadeIn 1s ease-in;
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* The dark overlay */
+  z-index: 1; /* Sits below the content */
 }
 
-.hero-section h1 {
-  font-size: 2.2rem;
-  margin-bottom: 1rem;
-  color: #f5c542; /* Elegant gold */
-  letter-spacing: 1px;
+/* Ensures all direct children (like the widget) appear above the overlay */
+.hero-section > * {
+  position: relative;
+  z-index: 2;
 }
 
-.hero-section p {
-  font-size: 1.1rem;
-  color: #ddd;
-  margin-bottom: 2rem;
+
+
+.booking-widget {
+  margin-top: 30px;
+  padding: 30px;
+  background-color: var(--widget-bg-color);
+  border-radius: var(--border-radius-main);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px); /* For Safari browser support */
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* ====== BOOKING FORM ====== */
 .booking-widget form {
   display: flex;
-  flex-direction: column;
-  gap: 1rem;
+  flex-wrap: wrap; /* Allows items to stack on smaller screens */
+  gap: 15px; /* Increased space between form elements */
   align-items: center;
+  justify-content: center;
 }
+
+
 
 .booking-widget input,
-.booking-widget select {
-  width: 80%;
-  padding: 0.75rem 1rem;
-  font-size: 1rem;
+.booking-widget select,
+.booking-widget button {
+  padding: 12px 15px;
+  border-radius: 6px;
   border: none;
-  border-radius: 8px;
-  background: #fff;
-  color: #333;
-  transition: all 0.3s ease;
-  outline: none;
+  font-size: 16px; /* Slightly larger font for readability */
 }
 
+/* Styling for text inputs and dropdowns */
+.booking-widget input,
+.booking-widget select {
+  background-color: #f0f0f0;
+  color: #333;
+  transition: box-shadow 0.2s ease-in-out;
+}
+
+/* Adds an outline when a user clicks into a field */
 .booking-widget input:focus,
 .booking-widget select:focus {
-  box-shadow: 0 0 10px #f5c542;
+  outline: none;
+  box-shadow: 0 0 0 3px hsla(28, 80%, 50%, 0.6);
 }
 
-/* ====== BUTTON STYLING ====== */
+/* Enhanced button styles */
 .booking-widget button {
-  background: linear-gradient(45deg, #f5c542, #e4b321);
-  color: #111;
-  font-weight: 600;
-  font-size: 1rem;
-  border: none;
-  padding: 0.9rem 1.8rem;
-  border-radius: 8px;
+  background-color: var(--primary-color);
+  color: var(--light-text-color);
+  font-weight: bold;
   cursor: pointer;
-  transition: all 0.3s ease;
-  margin-top: 0.5rem;
+  transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
 .booking-widget button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(245, 197, 66, 0.5);
+  background-color: var(--primary-hover-color);
+  transform: translateY(-2px); /* Lifts the button slightly on hover */
 }
 
-/* ====== RESPONSIVE DESIGN ====== */
+
+
 @media (max-width: 768px) {
-  .hero-section {
-    max-width: 90%;
-    padding: 2rem 1rem;
-  }
-
-  .hero-section h1 {
-    font-size: 1.8rem;
-  }
-
-  .booking-widget input,
-  .booking-widget select {
-    width: 100%;
-  }
-}
-
-/* ====== ANIMATION ====== */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+  .booking-widget form {
+    flex-direction: column; /* Stack form elements */
+    align-items: stretch; /* Make elements take full width */
   }
 }
