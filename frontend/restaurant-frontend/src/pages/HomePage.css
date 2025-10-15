@@ -1,120 +1,193 @@
-/* --- homepage.css --- */
+/* --- homepage.css (Top-Notch Version) --- */
 
-/* Enhanced styles for a more modern, responsive, and user-friendly hero section.
-  Using CSS variables for easy theme changes.
+/* * ===============================================
+ * VARIABLES & GLOBAL SETTINGS
+ * ===============================================
+ * Using CSS variables for a maintainable and easily themeable design.
+ * Using 'rem' for font sizes improves accessibility.
 */
-
 :root {
-  --primary-color: #e67e22; /* A vibrant orange for calls-to-action */
-  --primary-hover-color: #d35400; /* A darker shade for hover effects */
-  --light-text-color: #ffffff;
-  --widget-bg-color: rgba(15, 15, 15, 0.65); /* Darker, semi-transparent background */
-  --border-radius-main: 10px; /* Consistent rounded corners */
+  --primary-color: #e67e22;
+  --primary-color-dark: #d35400;
+  --accent-glow-color: hsla(28, 80%, 50%, 0.7);
+  --text-light: #f5f5f5;
+  --text-dark: #333333;
+  --widget-bg: rgba(10, 10, 10, 0.6);
+  --border-light-translucent: rgba(255, 255, 255, 0.15);
+  --main-border-radius: 12px;
+  --transition-speed-fast: 0.2s ease;
+  --transition-speed-slow: 0.4s ease;
 }
 
-/*
-## Hero Section Enhancements
-- A dark overlay is added using a pseudo-element (`::before`) to ensure the white text is always readable, regardless of the background image.
-- Uses flexbox for perfect vertical and horizontal centering of its content.
-- `position: relative` is crucial for the overlay to work correctly.
+/* * ===============================================
+ * KEYFRAME ANIMATIONS
+ * ===============================================
+ * Adds subtle entry animations for a more dynamic page load.
+*/
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* * ===============================================
+ * HERO SECTION
+ * ===============================================
+ * Enhanced with a subtle text shadow for readability and an entry animation.
 */
 .hero-section {
-  position: relative; /* Required for the overlay */
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 80px 20px;
-  min-height: 50vh; /* Ensures the section has a good height */
+  min-height: 60vh;
+  padding: 100px 25px;
   background: url('https://via.placeholder.com/1200x400') no-repeat center center/cover;
-  color: var(--light-text-color);
+  color: var(--text-light);
   text-align: center;
-  overflow: hidden; /* Prevents overlay from spilling out */
+  overflow: hidden;
 }
 
+/* Dark overlay to ensure text is always readable over any image */
 .hero-section::before {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* The dark overlay */
-  z-index: 1; /* Sits below the content */
+  inset: 0; /* Modern shorthand for top, right, bottom, left = 0 */
+  background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.7)); /* Gradient overlay is softer */
+  z-index: 1;
 }
 
-/* Ensures all direct children (like the widget) appear above the overlay */
+/* Ensures content appears above the overlay */
 .hero-section > * {
   position: relative;
   z-index: 2;
+  /* Apply the fade-in animation */
+  animation: fadeInUp 0.8s var(--transition-speed-slow) both;
 }
 
+.hero-section > h1 { /* Example: Style a title if you have one */
+  text-shadow: 0 3px 8px rgba(0,0,0,0.5);
+}
 
-
+/* * ===============================================
+ * BOOKING WIDGET
+ * ===============================================
+ * Modern "glassmorphism" effect with a refined shadow and entry animation.
+*/
 .booking-widget {
-  margin-top: 30px;
-  padding: 30px;
-  background-color: var(--widget-bg-color);
-  border-radius: var(--border-radius-main);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px); /* For Safari browser support */
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: 40px;
+  padding: 35px;
+  background-color: var(--widget-bg);
+  border-radius: var(--main-border-radius);
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px); /* Safari support */
+  border: 1px solid var(--border-light-translucent);
+  transition: transform 0.3s ease;
+  animation: fadeInUp 0.8s 0.6s var(--transition-speed-slow) both; /* Delayed animation */
+}
+
+.booking-widget:hover {
+    transform: scale(1.02); /* Adds a subtle "lift" effect */
 }
 
 .booking-widget form {
   display: flex;
-  flex-wrap: wrap; /* Allows items to stack on smaller screens */
-  gap: 15px; /* Increased space between form elements */
+  flex-wrap: wrap;
+  gap: 15px;
   align-items: center;
   justify-content: center;
 }
 
-
-
+/* * ===============================================
+ * FORM ELEMENTS
+ * ===============================================
+ * Enhanced focus states and transitions for superior user feedback.
+*/
 .booking-widget input,
 .booking-widget select,
 .booking-widget button {
-  padding: 12px 15px;
-  border-radius: 6px;
+  padding: 14px 18px;
+  border-radius: 8px;
   border: none;
-  font-size: 16px; /* Slightly larger font for readability */
+  font-size: 1rem;
+  transition: all var(--transition-speed-fast); /* Universal transition */
 }
 
 /* Styling for text inputs and dropdowns */
 .booking-widget input,
 .booking-widget select {
-  background-color: #f0f0f0;
-  color: #333;
-  transition: box-shadow 0.2s ease-in-out;
+  background-color: #e9ecef;
+  color: var(--text-dark);
+  border: 2px solid transparent;
 }
 
-/* Adds an outline when a user clicks into a field */
+/* Advanced focus state for better visibility and feel */
 .booking-widget input:focus,
 .booking-widget select:focus {
   outline: none;
-  box-shadow: 0 0 0 3px hsla(28, 80%, 50%, 0.6);
+  background-color: #fff;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 4px var(--accent-glow-color);
 }
 
-/* Enhanced button styles */
+/* * ===============================================
+ * BUTTON STYLES
+ * ===============================================
+ * A button with gradient, hover, active, and disabled states.
+*/
 .booking-widget button {
-  background-color: var(--primary-color);
-  color: var(--light-text-color);
+  background: linear-gradient(45deg, var(--primary-color), var(--primary-color-dark));
+  color: var(--text-light);
   font-weight: bold;
+  letter-spacing: 0.5px;
   cursor: pointer;
-  transition: background-color 0.2s ease, transform 0.2s ease;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
 
 .booking-widget button:hover {
-  background-color: var(--primary-hover-color);
-  transform: translateY(-2px); /* Lifts the button slightly on hover */
+  background: linear-gradient(45deg, var(--primary-color-dark), var(--primary-color));
+  transform: translateY(-3px); /* Lifts the button more */
+  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+}
+
+.booking-widget button:active {
+  transform: translateY(-1px); /* Simulates a "press" */
+  box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+}
+
+.booking-widget button:disabled {
+    background: #999;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
 }
 
 
-
+/* * ===============================================
+ * RESPONSIVE DESIGN
+ * ===============================================
+ * Stacks form elements on mobile for a clean, single-column layout.
+*/
 @media (max-width: 768px) {
+  .hero-section {
+    min-height: 50vh;
+    padding: 60px 20px;
+  }
+
+  .booking-widget {
+    width: 90%;
+    padding: 25px;
+  }
+
   .booking-widget form {
-    flex-direction: column; /* Stack form elements */
-    align-items: stretch; /* Make elements take full width */
+    flex-direction: column;
+    align-items: stretch; /* Makes form elements full-width */
   }
 }

@@ -1,53 +1,126 @@
-/* src/components/TableLayout.css */
+/* --- src/components/TableLayout.css (Complete & Final Version) --- */
+
+/*
+## Main Container & Entry Animation
+- The container for the entire component.
+- Includes a fade-in animation for a smooth appearance.
+*/
 .table-layout-container {
   text-align: center;
   padding: 2rem;
+  color: #e5e5e5;
+  /* Apply the fade-in animation defined at the bottom */
+  animation: fadeInUp 0.6s ease-out forwards;
 }
 
+/*
+## Typography
+- Styles for the main heading and descriptive paragraph.
+*/
+.table-layout-container h2 {
+  font-size: 2.5rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.table-layout-container p {
+  font-size: 1.1rem;
+  color: #a0a0a0;
+  max-width: 600px;
+  margin: 0 auto 2rem auto;
+}
+
+/*
+## Tables Grid
+- The "glassmorphism" container that holds the selectable tables.
+*/
 .tables-grid {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 20px;
+  gap: 25px;
   margin-top: 2rem;
-  padding: 20px;
-  background-color: #ecf0f1;
-  border-radius: 10px;
+  padding: 2rem;
+  background-color: rgba(20, 20, 20, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
 }
 
+/*
+## Confirmation Button
+- Premium design with a gradient and shadows.
+- Uses "!important" to permanently fix visibility issues by overriding other styles.
+*/
 .confirm-booking-btn {
-  margin-top: 2rem;
-  padding: 12px 25px;
-  font-size: 1rem;
+  margin-top: 2.5rem;
+  padding: 14px 28px;
+  font-size: 1.1rem;
   font-weight: bold;
-  background-color: #e67e22;
-  color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.2s;
+  background-image: linear-gradient(45deg, #FFD700, #F0B400); /* Premium gradient */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease-in-out;
+
+  /* This forces the button to be visible */
+  color: #141414 !important;
+  opacity: 1 !important;
 }
 
 .confirm-booking-btn:hover:not(:disabled) {
-  background-color: #d35400;
+  background-image: linear-gradient(45deg, #f9e06c, #FFD700);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(255, 215, 0, 0.3);
+}
+
+.confirm-booking-btn:active:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .confirm-booking-btn:disabled {
-  background-color: #bdc3c7;
+  background-image: none; /* Remove gradient when disabled */
+  background-color: #555;
+  color: #999;
   cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
 }
 
-
-/* Add these to src/components/TableLayout.css */
-
-.loading-message, .error-message, .no-tables-message {
-  font-size: 1.2rem;
-  color: #555;
-  padding: 2rem;
+/*
+## Status Messages
+- Styles for loading, error, and "no tables" messages.
+*/
+.loading-message,
+.error-message,
+.no-tables-message {
+  font-size: 1.5rem;
+  color: #a0a0a0;
+  padding: 4rem 2rem;
   text-align: center;
+  font-weight: 500;
 }
 
 .error-message {
-  color: #e74c3c;
+  color: #e74c3c; /* Vibrant red for errors */
   font-weight: bold;
+}
+
+/*
+## Animation Definition
+- Defines the keyframes for the smooth entry animation.
+*/
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

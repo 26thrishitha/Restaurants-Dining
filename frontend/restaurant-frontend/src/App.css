@@ -1,57 +1,12 @@
-/* #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
-
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
-}  */
-
-
+/* --- src/App.css (Corrected for Particles Background) --- */
 
 
 /* --- 1. THEME & GLOBAL STYLES --- */
-
-/* Use :root for a maintainable and scalable theme */
 :root {
   /* Colors */
   --color-primary: #646cff;
   --color-secondary: #61dafbaa;
-  --color-background: #242424;
+  --color-background-solid: #242424; /* Kept for other elements if needed */
   --color-surface: #1a1a1a;
   --color-text: rgba(255, 255, 255, 0.87);
   --color-text-muted: #888;
@@ -80,7 +35,9 @@
 body {
   margin: 0;
   font-family: var(--font-family-sans);
-  background-color: var(--color-background);
+  /* --- CRITICAL FIX --- */
+  /* This MUST be transparent to let the particle canvas show through from behind. */
+  background-color: transparent;
   color: var(--color-text);
   line-height: 1.6;
   font-synthesis: none;
@@ -90,7 +47,20 @@ body {
 }
 
 
-/* --- 2. MAIN LAYOUT --- */
+/* --- 2. BACKGROUND EFFECTS --- */
+
+/* This positions the particle canvas in the absolute background. */
+#tsparticles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* This is the key to sending it behind all other content. */
+}
+
+
+/* --- 3. MAIN LAYOUT --- */
 
 /* App container using Flexbox for robust centering */
 .app-container {
@@ -102,10 +72,15 @@ body {
   align-items: center;
   min-height: 100vh;
   justify-content: center;
+
+  /* --- CRITICAL FIX --- */
+  /* This ensures the content sits on a layer above the background particles. */
+  position: relative;
+  z-index: 1;
 }
 
 
-/* --- 3. COMPONENTS --- */
+/* --- 4. COMPONENTS --- */
 
 .logo-container {
   display: flex;
@@ -131,7 +106,7 @@ body {
 
 .card {
   padding: calc(var(--spacing-unit) * 2);
-  background-color: var(--color-surface);
+  background-color: var(--color-surface); /* This solid background is fine for a card */
   border: 1px solid var(--color-border);
   border-radius: var(--border-radius);
   box-shadow: var(--shadow-sm);
@@ -164,7 +139,7 @@ body {
 }
 
 
-/* --- 4. TYPOGRAPHY & CONTENT --- */
+/* --- 5. TYPOGRAPHY & CONTENT --- */
 
 h1 {
   font-size: 3.2em;
@@ -179,7 +154,7 @@ h1 {
 }
 
 
-/* --- 5. ANIMATIONS & ACCESSIBILITY --- */
+/* --- 6. ANIMATIONS & ACCESSIBILITY --- */
 
 @keyframes logo-spin {
   from {

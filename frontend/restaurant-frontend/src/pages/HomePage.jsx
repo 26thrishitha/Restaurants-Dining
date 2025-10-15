@@ -33,8 +33,8 @@ const HomePage = () => {
   return (
     <div className="homepage-container">
       <header className="hero-section">
-        <h1>Book Your Table, Create Your Memory</h1>
-        <p>Experience the finest dining in Vijayawada.</p>
+        <h1>Tables Are Waiting… Your Appetite Too!</h1>
+        <p>Experience the finest dining in Konaseema.🌴🌴🌴</p>
         <div className="booking-widget">
           <form onSubmit={handleFindTable}>
             <input

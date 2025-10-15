@@ -17,8 +17,8 @@ import RegisterPage from './pages/RegisterPage';
 import PaymentSuccessPage from './pages/PaymentSuccessPage';
 // App.jsx
 import PaymentCancelPage from './pages/PaymentCancelPage';
-import ParticlesBackground from "./components/ParticlesBackground";
-
+// import ParticlesBackground from './components/ParticlesBackground';
+import ParticlesBackground from './components/ParticlesBackground';
 
 
 const stripePromise = loadStripe('pk_test_51SHMaEAAZpj2wMBMpPOhLRKSfRa6eaPSRUlVkGOUAWanAov9kWX9DmLXmUDOY9tywuKgh9tgEYSCA2ddQrENoh3T00VUkJGvei');
@@ -27,10 +27,10 @@ function App() {
   return (
     <Elements stripe={stripePromise}>
       <div className="App">
-         <ParticlesBackground />
+        <ParticlesBackground />
         <Navbar /> {/* This line can now find the Navbar component */}
         
-        <main>
+        <main className="main-content">
           
           <Routes>
             <Route path="/" element={<HomePage />} />

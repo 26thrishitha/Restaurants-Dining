@@ -1,51 +1,147 @@
+/* --- src/components/MenuItem.css (Enhanced Version) --- */
+
+/* * ===============================================
+ * VARIABLES & THEME
+ * ===============================================
+ * Using variables for a consistent and easily customizable design.
+*/
+:root {
+  --card-surface-bg: rgba(20, 20, 20, 0.7); /* Semi-transparent dark background */
+  --card-border-color: rgba(255, 255, 255, 0.1);
+  --text-primary-light: #e5e5e5;
+  --text-secondary-light: #a0a0a0;
+  --accent-color-green: #2ecc71; /* A vibrant green for actions */
+  --accent-color-green-hover: #27ae60;
+  --card-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  --card-shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.4);
+  --card-border-radius: 12px;
+  --transition-speed: 0.3s ease;
+}
+
+/* * ===============================================
+ * MENU ITEM CARD
+ * ===============================================
+ * Modern "glassmorphism" card that floats above the background.
+ * Includes a subtle hover effect to feel more interactive.
+*/
 .menu-item-card {
   display: flex;
   align-items: center;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  margin-bottom: 1.5rem;
-  padding: 1rem;
+  background-color: var(--card-surface-bg);
+  border: 1px solid var(--card-border-color);
+  border-radius: var(--card-border-radius);
+  box-shadow: var(--card-shadow);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px); /* Safari support */
+  margin-bottom: 2rem;
+  padding: 1.25rem;
+  transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+  overflow: hidden; /* Ensures content respects the border radius */
 }
 
+.menu-item-card:hover {
+  transform: translateY(-5px); /* Lifts the card on hover */
+  box-shadow: var(--card-shadow-hover);
+}
+
+/* * ===============================================
+ * IMAGE & DETAILS
+ * ===============================================
+*/
 .menu-item-image {
-  width: 120px;
-  height: 120px;
-  border-radius: 8px;
+  width: 125px;
+  height: 125px;
+  border-radius: 10px; /* Slightly smaller radius than the card */
   object-fit: cover;
   margin-right: 1.5rem;
+  flex-shrink: 0; /* Prevents the image from shrinking on smaller screens */
+  border: 2px solid var(--card-border-color);
 }
 
 .menu-item-details {
-  flex-grow: 1;
+  flex-grow: 1; /* Allows text content to take remaining space */
 }
 
 .menu-item-details h3 {
   margin: 0 0 0.5rem 0;
+  color: var(--text-primary-light);
+  font-size: 1.4rem;
+  font-weight: 600;
 }
 
 .menu-item-details p {
   margin: 0;
-  color: #555;
+  color: var(--text-secondary-light);
+  font-size: 1rem;
+  line-height: 1.5;
 }
 
+/* * ===============================================
+ * ACTIONS & PRICE
+ * ===============================================
+ * Aligns the price and button to the right.
+*/
 .menu-item-actions {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  justify-content: space-between;
+  text-align: right;
 }
 
 .menu-item-price {
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   font-weight: bold;
-  margin-bottom: 0.5rem;
+  color: var(--accent-color-green);
+  margin-bottom: 0.75rem;
 }
 
 .menu-item-actions button {
-  background-color: #27ae60;
-  color: white;
+  background-color: var(--accent-color-green);
+  color: #fff;
   border: none;
-  padding: 8px 16px;
-  border-radius: 5px;
+  padding: 10px 20px;
+  border-radius: 8px;
   cursor: pointer;
+  font-weight: bold;
+  font-size: 1rem;
+  transition: background-color var(--transition-speed), transform 0.2s ease;
+}
+
+.menu-item-actions button:hover {
+  background-color: var(--accent-color-green-hover);
+  transform: scale(1.05); /* Slightly enlarges button on hover */
+}
+
+.menu-item-actions button:active {
+    transform: scale(0.98); /* Simulates a press */
+}
+
+
+/* * ===============================================
+ * RESPONSIVE DESIGN
+ * ===============================================
+ * Adjusts the layout for smaller screens like mobile phones.
+*/
+@media (max-width: 600px) {
+  .menu-item-card {
+    flex-direction: column; /* Stacks image on top of details */
+    align-items: flex-start; /* Aligns items to the left */
+    padding: 1rem;
+  }
+
+  .menu-item-image {
+    width: 100%; /* Makes image span the full width of the card */
+    height: 180px; /* Adjust height for a banner-like look */
+    margin-right: 0;
+    margin-bottom: 1rem;
+  }
+
+  .menu-item-actions {
+    flex-direction: row; /* Puts price and button side-by-side */
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-top: 1rem;
+  }
 }

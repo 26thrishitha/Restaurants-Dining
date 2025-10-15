@@ -1,28 +1,82 @@
-/* src/pages/PaymentStatus.css */
+/* --- src/pages/PaymentStatus.css (Enhanced for Dark Theme) --- */
+
+/*
+## Main Status Container
+- Uses a semi-transparent background to create a "glass" effect over the particles.
+- All text inside is set to a light color by default for visibility.
+*/
 .payment-status-container {
   text-align: center;
-  padding: 4rem 2rem;
-  margin: 2rem auto;
+  margin: 4rem auto;
+  padding: 2.5rem;
   max-width: 600px;
-  border-radius: 8px;
+
+  /* Glassmorphism Effect */
+  background-color: rgba(20, 20, 20, 0.7); /* Semi-transparent dark surface */
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px); /* Safari support */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+
+  /* Text Color Fix */
+  color: #e5e5e5; /* Light text color for all content inside */
 }
 
+/*
+## Success & Cancel Variants
+- Instead of changing the whole background, we now change the border color
+  for a more subtle and modern look.
+*/
 .payment-status-container.success {
-  background-color: #e8f5e9;
-  border: 1px solid #4caf50;
+  border-color: #2ecc71; /* A vibrant green */
 }
 
 .payment-status-container.cancel {
-  background-color: #ffebee;
-  border: 1px solid #f44336;
+  border-color: #e74c3c; /* A clear red */
 }
 
+/*
+## Typography
+- Styles the heading and paragraph for better readability.
+*/
+.payment-status-container h2 {
+  font-size: 2.5rem;
+  font-weight: 600;
+  margin: 0 0 1rem 0;
+}
+
+.payment-status-container.success h2 {
+  color: #2ecc71; /* Match the border color */
+}
+
+.payment-status-container.cancel h2 {
+  color: #e74c3c; /* Match the border color */
+}
+
+.payment-status-container p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #a0a0a0; /* A softer gray for the description */
+}
+
+/*
+## Link/Button Styling
+- An enhanced button style that matches the site's modern theme.
+*/
 .status-link {
   display: inline-block;
-  margin: 1rem 0.5rem;
-  padding: 10px 20px;
-  background-color: #e67e22;
+  margin: 1.5rem 0.5rem 0;
+  padding: 12px 24px;
+  background-color: var(--primary-color, #e67e22); /* Using a variable is best */
   color: white;
   text-decoration: none;
-  border-radius: 5px;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.status-link:hover {
+  background-color: var(--primary-hover-color, #d35400);
+  transform: translateY(-3px); /* Lifts the button on hover */
 }

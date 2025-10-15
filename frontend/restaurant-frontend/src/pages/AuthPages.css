@@ -1,53 +1,103 @@
-/* src/pages/AuthPages.css */
+/* --- src/pages/AuthPages.css (Enhanced for Dark Theme) --- */
+
 .auth-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 4rem 0;
+  min-height: 80vh; /* Ensures it's centered vertically */
+  padding: 2rem;
 }
 
+/*
+## Auth Form Styling
+- Uses the "glassmorphism" effect to float above the particle background.
+- All typography is light-colored for visibility.
+*/
 .auth-form {
-  padding: 2rem;
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   width: 100%;
-  max-width: 400px;
+  max-width: 420px;
+  padding: 2.5rem;
   text-align: center;
+
+  /* Glassmorphism Effect */
+  background-color: rgba(20, 20, 20, 0.75);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
 }
 
 .auth-form h2 {
-  margin-bottom: 1.5rem;
+  margin: 0 0 2rem 0;
+  font-size: 2.2rem;
+  font-weight: 600;
+  color: #e5e5e5; /* Light text color */
 }
 
+/*
+## Input Field Styling for Dark Theme
+- Dark background, light text, and a glowing focus effect.
+*/
 .auth-form input {
   width: 100%;
-  padding: 12px;
-  margin-bottom: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box; /* Important for padding */
+  padding: 14px 16px;
+  margin-bottom: 1.25rem;
+  box-sizing: border-box;
+
+  background-color: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+
+  color: #e5e5e5; /* Light text color for typing */
+  font-size: 1rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
+.auth-form input:focus {
+  outline: none;
+  border-color: var(--accent-color, #ffd700); /* Use your site's accent color */
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
+}
+
+/*
+## Enhanced Button Styling
+*/
 .auth-form button {
   width: 100%;
-  padding: 12px;
-  background-color: #e67e22;
-  color: white;
+  padding: 14px;
+  background-color: var(--accent-color, #ffd700);
+  color: #141414; /* Dark text for contrast on the gold button */
   border: none;
-  border-radius: 4px;
-  font-size: 1rem;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: bold;
   cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease;
 }
 
-/* Add this to src/pages/AuthPages.css */
+.auth-form button:hover {
+  background-color: var(--accent-hover-color, #fff);
+  transform: translateY(-3px);
+}
+
+/*
+## Link to Switch Between Login/Register
+*/
 .auth-switch-link {
   margin-top: 1.5rem;
   font-size: 0.9rem;
+  color: #a0a0a0; /* Softer gray for the prompt text */
 }
 
 .auth-switch-link a {
-  color: #e67e22;
+  color: var(--accent-color, #ffd700); /* Gold color for the link */
   text-decoration: none;
   font-weight: bold;
+  transition: color 0.2s ease;
+}
+
+.auth-switch-link a:hover {
+  text-decoration: underline;
+  color: var(--accent-hover-color, #fff);
 }

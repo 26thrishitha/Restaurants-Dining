@@ -1,77 +1,158 @@
-/* src/components/Navbar.css */
+/* --- src/components/Navbar.css (Corrected) --- */
+
+/* Base Navbar Styles (for all screen sizes) */
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
-  background-color: #333;
-  color: white;
+  padding: 1.25rem 3rem;
+  background-color: var(--navbar-bg); /* Using variables from your other files */
+  color: var(--text-primary);
+  border-bottom: 1px solid #2a2a2a;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  transition: padding 0.3s ease;
+
+  /* This is the key fix to keep it visible on top of all content */
+  position: relative;
+  z-index: 100;
 }
 
-.nav-logo {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: white;
-  text-decoration: none;
-}
-
-.nav-links a {
-  color: white;
-  text-decoration: none;
-  margin-left: 1.5rem;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* logoutbutton css */
-
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #111;
-  padding: 15px 40px;
-}
-
-.nav-logo {
-  color: gold;
-  font-size: 24px;
-  font-weight: bold;
-  text-decoration: none;
-}
-
+/* Base styles for the links container on desktop */
 .nav-links {
   display: flex;
-  gap: 25px;
+  color: white;
+  align-items: center;
+  gap: 2.5rem;
 }
 
-.nav-links a,
-.nav-logout-btn {
-  color: white;
-  text-decoration: none;
-  font-size: 16px;
+/* Hamburger Toggle Button Styling */
+.nav-toggle {
+  display: none; /* Hidden on desktop */
   background: none;
   border: none;
   cursor: pointer;
-  font-family: inherit;
-  padding: 0;
-  transition: color 0.3s;
+  padding: 10px;
+  z-index: 1001; /* Must be higher than navbar's z-index */
 }
 
-.nav-links a:hover,
-.nav-logout-btn:hover {
-  color: gold;
+.hamburger {
+  display: block;
+  position: relative;
+  width: 25px;
+  height: 3px;
+  background-color: var(--accent-color);
+  transition: all 0.3s ease;
+}
+
+.hamburger::before,
+.hamburger::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: var(--accent-color);
+  transition: all 0.3s ease;
+}
+
+.hamburger::before {
+  top: -8px;
+}
+
+.hamburger::after {
+  bottom: -8px;
+}
+
+/* Animate hamburger to an 'X' when active */
+.nav-toggle.active .hamburger {
+  background-color: transparent;
+}
+.nav-toggle.active .hamburger::before {
+  transform: rotate(45deg);
+  top: 0;
+}
+.nav-toggle.active .hamburger::after {
+  transform: rotate(-45deg);
+  bottom: 0;
+}
+
+
+/* Responsive Design for Mobile */
+@media (max-width: 768px) {
+  .navbar {
+    flex-wrap: wrap; /* Allow items to wrap */
+  }
+
+  /* Show the hamburger toggle on mobile */
+  .nav-toggle {
+    display: block;
+  }
+
+  /* Hide the nav links by default on mobile */
+  .nav-links {
+    display: none;
+    position: absolute; /* Position it relative to the navbar */
+    top: 100%; /* Start right below the navbar */
+    left: 0;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 2rem 0;
+    background-color: var(--navbar-bg);
+  }
+
+  /* This is the magic: Show the menu when it has the "active" class */
+  .nav-links.active {
+    display: flex;
+  }
+}
+
+
+.nav-logo {
+  font-size: 2rem;
+  font-weight: bold;
+  color: white; /* Uses the gold color variable */
+  text-decoration: none;
+  letter-spacing: 1px;
+  transition: color 0.3s ease;
+}
+
+.nav-logo:hover {
+  color: var(--accent-hover-color); /* Bright white on hover */
+}
+
+/*
+## Navigation Link Styling
+- Sets a visible color for all links and adds the animated underline effect.
+*/
+.nav-links a {
+  color: var(--text-primary); /* A soft white color */
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 500;
+  padding: 5px 0;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+/* Animated Underline Effect */
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background-color: var(--accent-color);
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.nav-links a:hover {
+  color: var(--accent-hover-color);
+}
+
+.nav-links a:hover::after {
+  width: 100%;
 }

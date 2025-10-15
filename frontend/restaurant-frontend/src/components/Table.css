@@ -1,48 +1,57 @@
-/* src/components/Table.css */
-.table {
-  width: 100px;
-  height: 100px;
-  border: 2px solid #555;
-  border-radius: 8px;
+/* --- src/components/Table.css (New, Polished Version) --- */
+
+.table-representation {
+  width: 110px;
+  height: 110px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-weight: bold;
-  transition: all 0.2s ease-in-out;
-}
-
-.table.available {
-  background-color: #2ecc71; /* Green */
-  color: white;
+  
+  /* The circular shape and base styling */
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  background-color: rgba(30, 30, 30, 0.4);
+  box-shadow: inset 0 0 15px rgba(0,0,0,0.5), 0 2px 5px rgba(0,0,0,0.3);
+  
+  color: #e5e5e5;
   cursor: pointer;
+  transition: all 0.3s ease;
 }
 
-.table.available:hover {
-  transform: scale(1.05);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+/* --- HOVER STATE --- */
+/* A subtle lift and glow effect on hover */
+.table-representation.available:hover {
+  transform: translateY(-5px);
+  border-color: var(--accent-color, #ffd700);
+  box-shadow: inset 0 0 15px rgba(0,0,0,0.5), 0 8px 25px rgba(255, 215, 0, 0.2);
 }
 
-.table.booked {
-  background-color: #e74c3c; /* Red */
-  color: #fff;
-  cursor: not-allowed;
-  opacity: 0.6;
+/* --- SELECTED STATE --- */
+/* A strong, clear indicator for the selected table */
+.table-representation.selected {
+  transform: translateY(-5px) scale(1.05);
+  border: 3px solid var(--accent-color, #ffd700);
+  background-color: rgba(255, 215, 0, 0.1);
+  box-shadow: 0 0 25px rgba(255, 215, 0, 0.5);
 }
 
-.table.selected {
-  background-color: #3498db; /* Blue */
-  color: white;
-  border-color: #f1c40f;
-  transform: scale(1.1);
-  box-shadow: 0 4px 20px rgba(52, 152, 219, 0.5);
-}
-
-.table-number {
-  font-size: 1.8rem;
+/* --- TYPOGRAPHY --- */
+/* Styling for the text inside the circle */
+.table-name {
+  font-size: 2.2rem;
+  font-weight: 700;
+  line-height: 1;
 }
 
 .table-capacity {
   font-size: 0.8rem;
-  margin-top: 5px;
+  font-weight: 300;
+  color: #a0a0a0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.table-representation.selected .table-capacity {
+  color: var(--accent-color, #ffd700);
 }
