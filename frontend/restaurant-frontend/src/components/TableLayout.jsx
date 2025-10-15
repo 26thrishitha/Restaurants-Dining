@@ -35,7 +35,7 @@ const TableLayout = ({ bookingDetails }) => {
         // const apiUrl = `http://localhost:4000/api/bookings/availability?date=${date}&time=${time}&partySize=${partySize}`;
         // const response = await axios.get(apiUrl);
 
-        const response = await api.get(`/api/bookings/availability?date=${date}...`);
+        const response = await api.get(`/api/bookings/availability?date=${date}&time=${time}&partySize=${partySize}`);
 
         // We need to add a 'status' to the tables returned from the API
         const availableTables = response.data.map(table => ({ ...table, status: 'available' }));

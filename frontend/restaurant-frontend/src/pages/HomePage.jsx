@@ -1,14 +1,16 @@
 // src/pages/HomePage.jsx
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // <-- Import useNavigate
+import { useNavigate } from 'react-router-dom';
 import './HomePage.css';
 
 const HomePage = () => {
-  const navigate = useNavigate(); // <-- Initialize the hook
+  const navigate = useNavigate();
+  
+  // **Ensure default values are set correctly on initial load**
   const [bookingDetails, setBookingDetails] = useState({
     date: '',
-    time: '18:00',
-    partySize: 2,
+    time: '18:00',      // Default time
+    partySize: 2,       // Default party size
   });
 
   const handleInputChange = (e) => {
@@ -20,18 +22,19 @@ const HomePage = () => {
 
   const handleFindTable = (e) => {
     e.preventDefault();
-    // Navigate to the selection page and pass the form data in the state
+    if (!bookingDetails.date) {
+      alert('Please select a date to find a table.');
+      return;
+    }
+    // Navigate to the selection page, passing the complete state
     navigate('/select-table', { state: { bookingDetails } });
   };
 
-  // ... rest of the component is the same ...
   return (
     <div className="homepage-container">
       <header className="hero-section">
-        {/* Replace with a real image path in your assets folder */}
-        <img src="https://images.unsplash.com/photo-1552566626-52f8b828add9" alt="Restaurant Interior" style={{width: '100%', height: '400px', objectFit: 'cover'}}/>
-        <h1>Miss Mom’s Magic in the Kitchen? Table Booked, Magic Served!</h1>
-        <p>Experience the finest dining in Konaseema🌴🌴.</p>
+        <h1>Book Your Table, Create Your Memory</h1>
+        <p>Experience the finest dining in Vijayawada.</p>
         <div className="booking-widget">
           <form onSubmit={handleFindTable}>
             <input
@@ -41,6 +44,7 @@ const HomePage = () => {
               onChange={handleInputChange}
               required
             />
+            {/* **The `value` prop makes this a "controlled component"** */}
             <select name="time" value={bookingDetails.time} onChange={handleInputChange}>
               <option value="18:00">6:00 PM</option>
               <option value="18:30">6:30 PM</option>
@@ -48,6 +52,7 @@ const HomePage = () => {
               <option value="19:30">7:30 PM</option>
               <option value="20:00">8:00 PM</option>
             </select>
+            {/* **The `value` prop makes this a "controlled component"** */}
             <input
               type="number"
               name="partySize"
